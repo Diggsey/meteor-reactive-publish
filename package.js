@@ -6,6 +6,7 @@ Package.on_use(function(api) {
   api.use('coffeescript', ['client', 'server']);
   api.use('underscore', ['server']);
   api.use('server-deps', ['server']);
+  api.use('accounts-base', ['server']);
 
   api.add_files('lib/reactive-publish.coffee', ['server']);
 });
