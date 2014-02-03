@@ -71,14 +71,14 @@ Meteor.reactivePublish = (name, f) ->
 			
 			addCursor = (cursor) =>
 				if cursor
-					name = cursor._cursorDescription.collectionName
+					collectionName = cursor._cursorDescription.collectionName
 				
 					record =
 						cursor: cursor
 						ids: {}
 					
-					newRecords[name] = record
-					oldRecord = oldRecords[name] ? {ids: {}}
+					newRecords[collectionName] = record
+					oldRecord = oldRecords[collectionName] ? {ids: {}}
 					
 					cursor.observeChanges
 						added: (id, fields) =>
@@ -86,14 +86,14 @@ Meteor.reactivePublish = (name, f) ->
 								delete oldRecord.ids[id]
 							else
 								record.ids[id] = true
-								@added(name, id, fields)
+								@added(collectionName, id, fields)
 								
 						removed: (id) =>
 							delete record.ids[id]
-							@removed(name, id)
+							@removed(collectionName, id)
 							
 						changed: (id, fields) =>
-							@changed(name, id, fields)
+							@changed(collectionName, id, fields)
 			
 			result = f.call(@)
 			
@@ -103,9 +103,10 @@ Meteor.reactivePublish = (name, f) ->
 			else
 				addCursor result
 			
-			for name, record of oldRecords
+			for collectionName, record of oldRecords
 				for id of record.ids
-					@removed(name, id)
+					@removed(collectionName, id)
+				record.ids = {}
 			
 			oldRecords = newRecords
 			
