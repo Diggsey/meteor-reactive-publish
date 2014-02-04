@@ -82,10 +82,10 @@ Meteor.reactivePublish = (name, f) ->
 					
 					cursor.observeChanges
 						added: (id, fields) =>
+							record.ids[id] = true
 							if id of oldRecord.ids
 								delete oldRecord.ids[id]
 							else
-								record.ids[id] = true
 								@added(collectionName, id, fields)
 								
 						removed: (id) =>
