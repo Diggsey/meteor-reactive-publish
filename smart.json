@@ -3,7 +3,7 @@
   "description": "Enable server-side reactivity for Meteor.publish",
   "homepage": "https://github.com/Diggsey/meteor-reactive-publish",
   "author": "Diggory Blake",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "git": "https://github.com/Diggsey/meteor-reactive-publish.git",
   "packages": {
     "server-deps": "0.1.2"

@@ -61,7 +61,7 @@ parent = override Cursor.prototype,
 		parent.count @, args...
 		
 Meteor.reactivePublish = (name, f) ->
-	Meteor.publish name, ->
+	Meteor.publish name, (args...) ->
 		oldRecords = {}
 		depends = []
 		isPublishing = false
@@ -95,7 +95,7 @@ Meteor.reactivePublish = (name, f) ->
 						changed: (id, fields) =>
 							@changed(collectionName, id, fields)
 			
-			result = f.call(@)
+			result = f.call(@, args...)
 			
 			if _.isArray(result)
 				for cursor in result
