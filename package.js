@@ -3,10 +3,13 @@ Package.describe({
 });
 
 Package.on_use(function(api) {
-  api.use('coffeescript', ['client', 'server']);
-  api.use('underscore', ['server']);
-  api.use('server-deps', ['server']);
-  api.use('accounts-base', ['server']);
+  api.use([
+    'coffeescript',
+    'deps',
+    'underscore',
+    'server-deps',
+    'accounts-base'
+  ], 'server');
 
-  api.add_files('lib/reactive-publish.coffee', ['server']);
+  api.add_files('lib/reactive-publish.coffee', 'server');
 });
