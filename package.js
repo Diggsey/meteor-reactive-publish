@@ -1,13 +1,17 @@
 Package.describe({
-  summary: "Enable server-side reactivity for Meteor.publish"
+  name: "mrt:reactive-publish",
+  summary: "Enable server-side reactivity for Meteor.publish",
+  version: "0.1.7",
+  git: "https://github.com/Diggsey/meteor-reactive-publish.git"
 });
 
 Package.on_use(function(api) {
+  api.versionsFrom('METEOR@1.0');
   api.use([
     'coffeescript',
-    'deps',
+    'tracker',
     'underscore',
-    'server-deps',
+    'mrt:server-deps',
     'accounts-base'
   ], 'server');
 
