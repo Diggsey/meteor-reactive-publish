@@ -63,12 +63,17 @@ parent = override Cursor.prototype,
 Meteor.reactivePublish = (name, f) ->
 	Meteor.publish name, (args...) ->
 		oldRecords = {}
-		depends = []
+		handles = []
 		isPublishing = false
 		
 		handle = Deps.autorun =>
 			newRecords = {}
 			
+			for cHandle in handles
+				cHandle.stop()
+
+			handles = []
+
 			addCursor = (cursor) =>
 				if cursor
 					collectionName = cursor._cursorDescription.collectionName
@@ -80,7 +85,7 @@ Meteor.reactivePublish = (name, f) ->
 					newRecords[collectionName] = record
 					oldRecord = oldRecords[collectionName] ? {ids: {}}
 					
-					cursor.observeChanges
+					handles.push cursor.observeChanges
 						added: (id, fields) =>
 							record.ids[id] = true
 							if id of oldRecord.ids
