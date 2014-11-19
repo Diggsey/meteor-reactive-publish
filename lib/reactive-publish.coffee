@@ -18,7 +18,8 @@ parent = override Cursor.prototype,
 		handle = Deps.nonreactive => parent.observeChanges(@, callbacks)
 		if Deps.active and @._cursorDescription.options.reactive
 			Deps.onInvalidate ->
-				handle.stop()
+				Meteor.setTimeout ->
+					handle.stop()
 		handle
 		
 	_depend: (changers) ->
