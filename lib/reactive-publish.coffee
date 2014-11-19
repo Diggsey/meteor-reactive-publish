@@ -78,7 +78,7 @@ Meteor.reactivePublish = (name, f) ->
 				if cursor
 					collectionName = cursor._cursorDescription.collectionName
 				
-					record =
+					record = newRecords[collectionName] || 
 						cursor: cursor
 						ids: {}
 					
