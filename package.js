@@ -11,7 +11,7 @@ Package.on_use(function(api) {
     'coffeescript',
     'tracker',
     'underscore',
-    'mrt:server-deps',
+    'peerlibrary:server-autorun',
     'accounts-base'
   ], 'server');
 
