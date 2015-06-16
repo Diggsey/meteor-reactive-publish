@@ -1,6 +1,10 @@
 reactive-publish
 =====================
 
+** This package is deprecated in favour of more light-weight solutions,
+such as [publish-composite](https://github.com/englue/meteor-publish-composite)
+and [publish-with-relations](https://github.com/svasva/meteor-publish-with-relations). **
+
 Enable server-side reactivity for Meteor.publish
 Depends on package "server-deps"
 
