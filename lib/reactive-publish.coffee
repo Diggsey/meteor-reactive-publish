@@ -76,7 +76,7 @@ Meteor.reactivePublish = (name, f) ->
 
 			addCursor = (cursor) =>
 				if cursor
-					collectionName = cursor._cursorDescription.collectionName
+					collectionName = cursor._cursorDescription.collectionNameOverride || cursor._cursorDescription.collectionName
 				
 					record =
 						cursor: cursor
